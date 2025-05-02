@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BouchonVariante index{% endblock %}
+
+{% block body %}
+    <h1>BouchonVariante index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix</th>
+                <th>Nom du bouchon</th>
+                <th>Description du bouchon</th>
+                <th>Couleur de l'antenne</th>
+                <th>Actif</th>
+                <th>PoidsTotal</th>
+                <th>ImageUrl</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bouchon_variante in bouchon_variantes %}
+            <tr>
+                <td>{{ bouchon_variante.id }}</td>
+                <td>{{ bouchon_variante.prix }}</td>
+                <td>{{ bouchon_variante.bouchon.nom }}</td>
+                <td>{{ bouchon_variante.bouchon.description }}</td>
+                <td>{{ bouchon_variante.antenneCouleur.nom }}</td>            
+                <td>{{ bouchon_variante.stock }}</td>
+                <td>{{ bouchon_variante.codeSku }}</td>
+                <td>{{ bouchon_variante.actif ? 'Yes' : 'No' }}</td>
+                <td>{{ bouchon_variante.poidsTotal }}</td>
+                <td>{{ bouchon_variante.imageUrl }}</td>
+                <td>{{ bouchon_variante.createdAt ? bouchon_variante.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ bouchon_variante.updatedAt ? bouchon_variante.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_bouchon_variante_show', {'id': bouchon_variante.id}) }}">show</a>
+                    <a href="{{ path('app_bouchon_variante_edit', {'id': bouchon_variante.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bouchon_variante_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Bouchon{% endblock %}
+
+{% block body %}
+    <h1>Edit Bouchon</h1>
+
+    {{ include('bouchon/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_bouchon_index') }}">back to list</a>
+
+    {{ include('bouchon/_delete_form.html.twig') }}
+{% endblock %}

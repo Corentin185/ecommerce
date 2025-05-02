@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}flotteurs de bordure{% endblock %}
+
+{% block body %}
+    <h1>flotteurs de bordure</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix</th>
+                <th>Nom du bouchon</th>
+                <th>Description du bouchon</th>
+                <th>Couleur de l'antenne</th>
+                <th>type de corps</th>
+                <th>Grammage</th>
+                <th>Longueur de l'antenne</th>
+                <th>Longueur de la quilles</th>
+                <th>Couleurs du corps du flotteurs</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bouchon_variante in bouchon_variantes %}
+            <tr>
+                <td>{{ bouchon_variante.id }}</td>
+                <td>{{ bouchon_variante.prix }}</td>
+                <td>{{ bouchon_variante.bouchon.nom }}</td>
+                <td>{{ bouchon_variante.bouchon.description }}</td>
+                <td>{{ bouchon_variante.antenneCouleur.nom }}</td>
+                <td>{{ bouchon_variante.typeCorps.nom}}</td>
+                <td>{{ bouchon_variante.grammageCorps.poids}}</td>
+                <td>{{ bouchon_variante.antenneLongueur.Longueur}}</td>
+                <td>{{ bouchon_variante.quilleLongueur.nom}}</td>
+                <td>{{ bouchon_variante.couleur.nom}}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

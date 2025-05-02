@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-primary fw-bold">Bienvenue, {{ utilisateur.prenom }} !</h1>
+    <p>Vous êtes connecté avec l'email : <strong>{{ utilisateur.email }}</strong></p>
+
+    <a href="{{ path('app_deconnexion') }}" class="btn btn-danger mt-3">Se déconnecter</a>
+</div>
+{% endblock %}

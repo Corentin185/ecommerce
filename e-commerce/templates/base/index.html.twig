@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Accueil{% endblock %}
+
+{% block body %}
+    <h2 class="fw-bold">Bienvenue sur notre boutique de flotteurs de pêche personnalisés !</h2>
+<!-- Section Accueil -->
+    <div class="hero">
+        <h2 class="text-center text-secondary mb-4 pb-4 "> Des flotteurs artisanaux, conçus avec passion pour une pêche précise et efficace!!!</h2>
+    </div>
+
+<!-- Slider d'images des flotteurs -->
+<div id="flotteursCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <img src="{{ asset('image/image1.jpg') }}" class="d-block w-100 carousel-img" alt="Flotteur artisanal coloré">
+            <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
+                <h3 class="text-light">Flotteurs artisanaux uniques</h3>
+                <p class="text-light">Des designs colorés et faits à la main.</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+            <img src="{{ asset('image/image2.jpg') }}" class="d-block w-100 carousel-img" alt="Flotteur personnalisé">
+            <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
+                <h3 class="text-light">Personnalisation sur mesure</h3>
+                <p class="text-light">Créez votre flotteur selon vos préférences.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+            <img src="{{ asset('image/image3.jpg') }}" class="d-block w-100 carousel-img" alt="Flotteur performant">
+            <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
+                <h3 class="text-light">Des flotteurs performants</h3>
+                <p class="text-light">Pour une précision maximale à la pêche.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contrôles précédent / suivant -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#flotteursCarousel" data-bs-slide="prev" aria-label="Image précédente">
+        <span class="carousel-control-prev-icon custom-carousel-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#flotteursCarousel" data-bs-slide="next" aria-label="Image suivante">
+        <span class="carousel-control-next-icon custom-carousel-icon" aria-hidden="true"></span>
+    </button>
+</div>
+
+<!-- Style des flèches -->
+<style>
+    .carousel-img {
+        height: 500px; /* ajuste selon tes préférences */
+        width: 100%;
+        object-fit: contain;
+        object-position: center;
+        background-color: #f8f9fa; /* couleur de fond neutre pour combler l’espace */
+    }
+
+    .custom-carousel-icon {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-img {
+            height: 200px;
+        }
+    }
+</style>
+
+
+{% endblock %}

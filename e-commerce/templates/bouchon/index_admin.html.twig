@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}produits{% endblock %}
+
+{% block body %}
+    <h1>Nos flotteurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>ImageUrl</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bouchon in bouchons %}
+            <tr>
+                <td>{{ bouchon.id }}</td>
+                <td>{{ bouchon.nom }}</td>
+                <td>{{ bouchon.description }}</td>
+                <td>{{ bouchon.imageUrl }}</td>
+                <td>
+                    <a href="{{ path('app_bouchon_show', {'id': bouchon.id}) }}">show</a>
+                    <a href="{{ path('app_bouchon_edit', {'id': bouchon.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <div class="text-center mt-4">
+        <a href="{{ path('app_bouchon_new') }}" class="btn btn-success btn-lg px-4">
+            ➕ Ajouter un nouveau bouchon
+        </a>
+    </div>
+    </table>
+
+   
+{% endblock %}
