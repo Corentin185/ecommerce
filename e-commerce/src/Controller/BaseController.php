@@ -35,7 +35,7 @@ final class BaseController extends AbstractController
            
         ]);
     }
-    #[Route('/panier', name: 'app_panier')]
+  /*  #[Route('/panier', name: 'app_panier')]
     public function panier(): Response
     {
     // Exemple avec un panier vide
@@ -47,7 +47,7 @@ final class BaseController extends AbstractController
     return $this->render('panier/panier.html.twig', [
         'cart' => $cart,
     ]);
-    }
+    }*/
 
     #[Route('/produits', name: 'app_produits')]
     public function produits(): Response

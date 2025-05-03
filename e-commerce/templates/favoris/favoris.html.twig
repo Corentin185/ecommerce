@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Favoris{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-primary text-center">💖 Mes Favoris</h1>
+
+    {% if favoris is not empty %}
+        <div class="row mt-4">
+            {% for produit in favoris %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produit.bouchon.nom }}</h5>
+                            <p class="card-text">
+                                Prix : {{ produit.prix|number_format(2, ',', ' ') }} €<br>
+                                Type : {{ produit.typeCorps.nom }}<br>
+                                Grammage : {{ produit.grammageCorps.poids }}g<br>
+                                Antenne : {{ produit.antenneCouleur.nom }}<br>
+                                Antenne Longueur : {{produit.antenneLongueur.longueur }} cm<br>
+                                Quille : {{produit.quilleLongueur.nom }}<br>
+                                Couleur : {{produit.couleur.nom }}
+                            </p>
+                            <a href="{{ path('favoris_supprimer', {'id': produit.id}) }}" class="btn btn-outline-danger">Retirer 💔</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center mt-4">
+            Aucun produit dans vos favoris.
+            <br>
+            <a href="{{ path('app_bouchon_variante_index') }}" class="btn btn-primary mt-3">🔍 Voir les produits</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
