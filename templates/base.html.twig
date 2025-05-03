@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}King Float - Flotteurs de Pêche{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                background-color: #f8f9fa;
+            }
+            .navbar-brand {
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: #0056b3 !important;
+            }
+            .hero {
+                background: url('https://source.unsplash.com/1600x500/?fishing') no-repeat center center;
+                background-size: cover;
+                text-align: center;
+                padding: 60px 20px;
+            }
+            .hero h1 {
+                font-size: 3rem;
+                font-weight: bold;
+                color: #007bff;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
+                font-weight: 400;
+                color: #333;
+            }
+            .footer {
+                background-color: #343a40;
+                color: white;
+                padding: 20px 0;
+                text-align: center;
+                margin-top: 30px;
+            }
+            .footer a {
+                color: #17a2b8;
+                text-decoration: none;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{{ path('app_accueil') }}">
+                <i class="bi bi-droplet"></i> King Float
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_accueil') }}">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_bouchon_index') }}">Nos produits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_contact') }}">Contact</a></li>
+                    <a class="nav-link" href="{{ path('favoris') }}"><i class="bi bi-heart"></i> Favoris</a>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('panier') }}"><i class="bi bi-cart"></i> Panier</a></li>   
+                </ul>
+
+                <ul class="navbar-nav ms-3">
+                    {% if app.session.get('utilisateur') %}
+                        <li class="nav-item me-2 mt-2 text-primary fw-bold">
+                            Bonjour {{ app.session.get('utilisateur').prenom }}
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary" href="{{ path('app_dashboard') }}">Mon compte</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-danger" href="{{ path('app_deconnexion') }}">Déconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary" href="{{ path('app_connexion') }}">Connexion</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-primary" href="{{ path('app_inscription') }}">S'inscrire</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-4">
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 King Float - Tous droits réservés</p>
+            <p>
+                <a href="#">Mentions Légales</a> |
+                <a href="#">CGV</a> |
+                <a href="#">Politique de confidentialité</a>
+            </p>
+            <p>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram ms-3"></i></a>
+                <a href="#"><i class="bi bi-twitter ms-3"></i></a>
+            </p>
+        </div>
+    </footer>
+
+    {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
+</body>
+</html>

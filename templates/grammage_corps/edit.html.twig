@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit GrammageCorps{% endblock %}
+
+{% block body %}
+    <h1>Edit GrammageCorps</h1>
+
+    {{ include('grammage_corps/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_grammage_corps_index') }}">back to list</a>
+
+    {{ include('grammage_corps/_delete_form.html.twig') }}
+{% endblock %}

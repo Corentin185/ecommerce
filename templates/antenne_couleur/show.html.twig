@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AntenneCouleur{% endblock %}
+
+{% block body %}
+    <h1>AntenneCouleur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ antenne_couleur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ antenne_couleur.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_antenne_couleur_index') }}">back to list</a>
+
+    <a href="{{ path('app_antenne_couleur_edit', {'id': antenne_couleur.id}) }}">edit</a>
+
+    {{ include('antenne_couleur/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AntenneLongueur index{% endblock %}
+
+{% block body %}
+    <h1>AntenneLongueur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Longueur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for antenne_longueur in antenne_longueurs %}
+            <tr>
+                <td>{{ antenne_longueur.id }}</td>
+                <td>{{ antenne_longueur.longueur }}</td>
+                <td>
+                    <a href="{{ path('app_antenne_longueur_show', {'id': antenne_longueur.id}) }}">show</a>
+                    <a href="{{ path('app_antenne_longueur_edit', {'id': antenne_longueur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_antenne_longueur_new') }}">Create new</a>
+{% endblock %}

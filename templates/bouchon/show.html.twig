@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bouchon{% endblock %}
+
+{% block body %}
+    <h1>Bouchon</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bouchon.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ bouchon.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ bouchon.description }}</td>
+            </tr>
+            <tr>
+                <th>ImageUrl</th>
+                <td>{{ bouchon.imageUrl }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ bouchon.actif ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ bouchon.categorie }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ bouchon.createdAt ? bouchon.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ bouchon.updatedAt ? bouchon.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bouchon_index') }}">back to list</a>
+
+    <a href="{{ path('app_bouchon_edit', {'id': bouchon.id}) }}">edit</a>
+
+    {{ include('bouchon/_delete_form.html.twig') }}
+{% endblock %}
