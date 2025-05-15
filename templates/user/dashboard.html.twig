@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon espace{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Bienvenue {{ app.user.userIdentifier }}</h1>
+    <p>Vous êtes connecté à votre tableau de bord utilisateur.</p>
+</div>
+{% endblock %}

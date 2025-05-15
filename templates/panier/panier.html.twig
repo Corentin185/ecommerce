@@ -7,7 +7,7 @@
     <h1 class="text-center text-primary fw-bold">🛒 Votre Panier</h1>
 
     <div class="text-start mt-3 mb-4">
-        <a href="{{ path('app_bouchon_variante_index') }}" class="btn btn-outline-primary">🏠 Retour aux produits</a>
+        <a href="{{ path('app_bouchon_index') }}" class="btn btn-outline-primary">🏠 Retour aux produits</a>
     </div>
 
     {% if cart|length > 0 %}
@@ -56,21 +56,13 @@
                 <div class="d-flex justify-content-end gap-2 mt-3">
                     <button type="submit" class="btn btn-success">✅ Mettre à jour le panier</button>
                     <a href="{{ path('panier_vider') }}" class="btn btn-warning">❌ Vider le panier</a>
-                </div>
-
-                <div class="text-end mt-4">
-                    {% if app.user %}
-                        <a href="{{ path('commande_valider') }}" class="btn btn-primary btn-lg">🧾 Passer commande</a>
-                    {% else %}
-                        <a href="{{ path('app_connexion') }}" class="btn btn-outline-secondary btn-lg">🔒 Se connecter pour commander</a>
-                    {% endif %}
-                </div>
+                </div>              
             </div>
         </form>
     {% else %}
         <div class="alert alert-info text-center mt-4">
             <p>Votre panier est vide.</p>
-            <a href="{{ path('app_bouchon_variante_index') }}" class="btn btn-primary">🛍 Voir les produits</a>
+            <a href="{{ path('app_bouchon_index') }}" class="btn btn-primary">🛍 Voir les produits</a>
         </div>
     {% endif %}
 </div>

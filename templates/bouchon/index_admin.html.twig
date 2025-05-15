@@ -1,43 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}produits{% endblock %}
+{% block title %}Flotteurs{% endblock %}
 
 {% block body %}
-    <h1>Nos flotteurs</h1>
+<div class="container mt-5">
+    <h1 class="text-center text-primary display-4 fw-bold">Nos flotteurs</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>ImageUrl</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row mt-4">
         {% for bouchon in bouchons %}
-            <tr>
-                <td>{{ bouchon.id }}</td>
-                <td>{{ bouchon.nom }}</td>
-                <td>{{ bouchon.description }}</td>
-                <td>{{ bouchon.imageUrl }}</td>
-                <td>
-                    <a href="{{ path('app_bouchon_show', {'id': bouchon.id}) }}">show</a>
-                    <a href="{{ path('app_bouchon_edit', {'id': bouchon.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card shadow rounded-4 p-3 h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title text-success">{{ bouchon.nom }}</h3>
+                        <p class="card-text text-muted">{{ bouchon.description }}</p>
+                        <div class="mt-auto">
+                            <a href="{{ path('admin_bouchon_variante_show', {id: bouchon.id}) }}"
+                            class="btn btn-outline-primary w-100 mt-3">Voir les bouchons</a>
+                            <div class="mt-2 d-flex justify-content-between">
+                                <a href="{{ path('app_bouchon_show', {'id': bouchon.id}) }}" class="btn btn-sm btn-secondary">Détails</a>
+                                <a href="{{ path('app_bouchon_edit', {'id': bouchon.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
+            <div class="col-12">
+                <p class="text-center text-muted">Aucun flotteur trouvé.</p>
+            </div>
         {% endfor %}
-        </tbody>
-        <div class="text-center mt-4">
+    </div>
+
+    <div class="text-center mt-4">
         <a href="{{ path('app_bouchon_new') }}" class="btn btn-success btn-lg px-4">
-            ➕ Ajouter un nouveau bouchon
+            Ajouter un nouveau bouchon
         </a>
     </div>
-    </table>
-
-   
+</div>
 {% endblock %}

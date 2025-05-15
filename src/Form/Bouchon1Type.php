@@ -14,7 +14,6 @@ class Bouchon1Type extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
-            ->add('imageUrl')
             ->add('actif')
             ->add('categorie')
             ->add('createdAt', null, [

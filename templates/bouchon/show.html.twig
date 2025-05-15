@@ -1,50 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bouchon{% endblock %}
+{% block title %}{{ bouchon.nom }}{% endblock %}
 
 {% block body %}
-    <h1>Bouchon</h1>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Image -->
+        <div class="col-md-5">
+            {% if bouchon.imageUrl %}
+                <img src="{{ asset(bouchon.imageUrl) }}" alt="{{ bouchon.nom }}" class="img-fluid rounded shadow-sm">
+            {% else %}
+                <div class="bg-light p-5 text-center text-muted border rounded">
+                    Ajouter une Image 
+                </div>
+            {% endif %}
+        </div>
+        <!-- Infos produit -->
+        <div class="col-md-7">
+            <h1 class="text-primary">{{ bouchon.nom }}</h1>
+            <p class="text-muted">{{ bouchon.description }}</p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ bouchon.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ bouchon.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ bouchon.description }}</td>
-            </tr>
-            <tr>
-                <th>ImageUrl</th>
-                <td>{{ bouchon.imageUrl }}</td>
-            </tr>
-            <tr>
-                <th>Actif</th>
-                <td>{{ bouchon.actif ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Categorie</th>
-                <td>{{ bouchon.categorie }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ bouchon.createdAt ? bouchon.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ bouchon.updatedAt ? bouchon.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_bouchon_index') }}">back to list</a>
-
-    <a href="{{ path('app_bouchon_edit', {'id': bouchon.id}) }}">edit</a>
-
-    {{ include('bouchon/_delete_form.html.twig') }}
+            <ul class="list-group mb-4">
+                {% if variante.antenneCouleur is defined %}
+                    <li class="list-group-item"><strong>Couleur antenne :</strong> {{ variante.antenneCouleur.nom }}</li>
+                {% endif %}
+                {% if variante.grammageCorps is defined %}
+                    <li class="list-group-item"><strong>Grammage :</strong> {{ variante.grammageCorps.poids }} g</li>
+                {% endif %}
+                {% if variante.typeCorps is defined %}
+                    <li class="list-group-item"><strong>Type de corps :</strong> {{ variante.typeCorps.nom }}</li>
+                {% endif %}
+                {% if variante.couleur is defined %}
+                    <li class="list-group-item"><strong>Couleur du corps :</strong> {{ variante.couleur.nom }}</li>
+                {% endif %}
+                {% if variante.longueurAntenne is defined %}
+                    <li class="list-group-item"><strong>Longueur antenne :</strong> {{ variante.longueurAntenne.longueur }} cm</li>
+                {% endif %}
+                {% if variante.longueurQuille is defined %}
+                    <li class="list-group-item"><strong>Longueur quille :</strong> {{ variante.longueurQuille.longueur }} cm</li>
+                {% endif %}
+            </ul>
+            <a href="{{ path('admin_bouchon_index') }}" class="btn btn-secondary">
+                ← Retour à la liste
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

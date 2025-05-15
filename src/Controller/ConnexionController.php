@@ -34,6 +34,7 @@ class ConnexionController extends AbstractController
                 $user->setPrenom($prenom);
                 $user->setEmail($email);
                 $user->setMotsDePasse(password_hash($password, PASSWORD_BCRYPT));
+                $user->setRoles(['ROLE_USER']); // Attribue le rôle par défaut
 
                 $em->persist($user);
                 $em->flush();
@@ -49,15 +50,10 @@ class ConnexionController extends AbstractController
     #[Route('/connexion', name: 'app_connexion')]
     public function connexion(Request $request, EntityManagerInterface $em, SessionInterface $session): Response
     {
-        if ($session->get('utilisateur')) {
-            return $this->redirectToRoute('app_dashboard');
-        }
-
         if ($request->isMethod('POST')) {
             $email = $request->request->get('email');
             $password = $request->request->get('password');
 
-            // 🔍 Vérifie que le champ email existe dans ton entité Connexion
             $user = $em->getRepository(Connexion::class)->findOneBy(['email' => $email]);
 
             if (!$user) {
@@ -70,14 +66,14 @@ class ConnexionController extends AbstractController
                 return $this->redirectToRoute('app_connexion');
             }
 
-            // 🎉 Connexion réussie → stocker en session
             $session->set('utilisateur', [
                 'id' => $user->getId(),
                 'nom' => $user->getNom(),
                 'prenom' => $user->getPrenom(),
                 'email' => $user->getEmail(),
+                'roles' => $user->getRoles(),
             ]);
-
+            
             $this->addFlash('success', 'Bienvenue ' . $user->getPrenom() . ' !');
             return $this->redirectToRoute('app_dashboard');
         }
@@ -91,9 +87,12 @@ class ConnexionController extends AbstractController
         $utilisateur = $session->get('utilisateur');
 
         if (!$utilisateur) {
-            $this->addFlash('error', 'Veuillez vous connecter pour accéder à votre espace.');
-            return $this->redirectToRoute('app_connexion');
+           $this->addFlash('error', 'Veuillez vous connecter pour accéder à votre espace.');
+           return $this->redirectToRoute('app_connexion');
         }
+        
+        //dump($utilisateur->getEmail());
+        //die;
 
         return $this->render('connexion/dashboard.html.twig', [
             'utilisateur' => $utilisateur

@@ -168,4 +168,12 @@ class Bouchon
 
         return $this;
     }         
+    // src/Entity/Bouchon.php
+private ?string $image = null;
+
+public function getImage(): ?string
+{
+    return $this->image;
+}
+
 }

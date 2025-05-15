@@ -56,8 +56,4 @@ final class BaseController extends AbstractController
         ]);
     }
 
-
-
-
-
  }

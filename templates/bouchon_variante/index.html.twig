@@ -86,7 +86,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Prix</th>
                 <th>Nom du bouchon</th>
                 <th>Description du bouchon</th>
@@ -103,7 +102,6 @@
         <tbody>
         {% for bouchon_variante in bouchon_variantes %}
             <tr>
-                <td>{{ bouchon_variante.id }}</td>
                 <td>{{ bouchon_variante.prix }}</td>
                 <td>{{ bouchon_variante.bouchon.nom }}</td>
                 <td>{{ bouchon_variante.bouchon.description }}</td>
@@ -120,9 +118,8 @@
                 </td>
                 <td>
                     <a href="{{ path('favoris_ajouter', {'id': bouchon_variante.id}) }}" class="btn btn-outline-dark">
-    <i class="bi bi-heart"></i> Ajouter au Favoris
-</a>
-
+                        <i class="bi bi-heart"></i> Ajouter au Favoris
+                    </a>
                 </td>
             </tr>
         {% else %}

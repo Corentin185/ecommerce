@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">
+        <span class="text-primary">Résultats pour :</span>
+        <span class="fw-bold text-dark">"{{ query }}"</span>
+    </h1>
+
+    {% if bouchons is empty %}
+        <div class="alert alert-warning shadow-sm">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            Aucun flotteur ne correspond à votre recherche.
+        </div>
+    {% else %}
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for variante in bouchons %}
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        {% if variante.imageUrl %}
+                            <img src="{{ asset(variante.imageUrl) }}" class="card-img-top" alt="Image du bouchon">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ variante.bouchon.nom }}</h5>
+                            <p class="card-text">{{ variante.bouchon.description }}</p>
+                            <ul class="list-group list-group-flush small">
+                                <li class="list-group-item"><strong>Couleur antenne :</strong> {{ variante.antenneCouleur.nom }}</li>
+                                <li class="list-group-item"><strong>Grammage :</strong> {{ variante.grammageCorps.poids }} g</li>
+                                <li class="list-group-item"><strong>Type de corps :</strong> {{ variante.typeCorps.nom }}</li>
+                                <li class="list-group-item">
+                                    <a href="{{ path('app_bouchon_show', { id: variante.bouchon.id }) }}" class="btn btn-outline-primary mt-2">
+                                        Voir le produit
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

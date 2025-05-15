@@ -4,8 +4,12 @@
 
 {% block body %}
 <div class="container mt-5">
-    <h1 class="text-primary mb-4">Administration des variantes de bouchons</h1>
-
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Administration des variantes de bouchons</h1>
+        <a href="{{ path('admin_bouchon_index') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Retour à l’accueil Administration
+        </a>
+    </div>
     <table class="table table-striped table-bordered table-hover align-middle shadow-sm">
         <thead class="table-dark text-white">
             <tr class="text-center">
